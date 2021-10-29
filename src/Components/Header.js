@@ -26,6 +26,9 @@ export default function Header() {
             <Link to="/contact" className="mr-5 hover:text-gray-900">
               Contact
             </Link>
+            <Link to="/addtour" className="mr-5 hover:text-gray-900">
+              Add Tour
+            </Link>
           </nav>
           <div className="md:w-1/3 w-full md:flex md:justify-end md:left-0 md:items-center md:mx-auto md:py-3">
             <button className="mr-4 inline-flex items-center bg-gray-100 border-0 py-1.5 text-base px-6 focus:outline-none hover:bg-gray-200 mt-4 md:mt-0">

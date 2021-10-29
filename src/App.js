@@ -17,6 +17,7 @@ import Contact from "./Pages/Contact";
 import Admin from "./Pages/Admin";
 import AuthProvider from "./Context/AuthProvider";
 import PrivateRoute from "./PrivateRoute/PrivateRoute"
+import AddTour from "./Pages/AddTour";
 
 
 export default function App() {
@@ -47,12 +48,18 @@ export default function App() {
             <Route exact path="/contact">
               <Contact></Contact>
             </Route>
-            <PrivateRoute exact path="/tourdetails/:tourID">
+            <PrivateRoute exact path="/addtour">
+              <AddTour></AddTour>
+            </PrivateRoute>
+            <PrivateRoute exact path="/tourdetails/:id">
               <TourDetails></TourDetails>
             </PrivateRoute>
-            <Route exact path="/register">
+            <PrivateRoute exact path="/booking/:id">
+              <Booking></Booking>
+            </PrivateRoute>
+            <PrivateRoute exact path="/register">
               <Register></Register>
-            </Route>
+            </PrivateRoute>
             <PrivateRoute exact path="/admin">
               <Admin></Admin>
             </PrivateRoute>
