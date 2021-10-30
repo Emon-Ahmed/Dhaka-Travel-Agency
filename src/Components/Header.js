@@ -4,6 +4,7 @@ import useAuth from "../Hooks/useAuth";
 
 export default function Header() {
   const { user, logOut } = useAuth();
+  console.log(user);
   return (
     <div>
       <header className="text-gray-600 body-font text-center">
@@ -26,9 +27,11 @@ export default function Header() {
             <Link to="/contact" className="mr-5 hover:text-gray-900">
               Contact
             </Link>
-            <Link to="/addtour" className="mr-5 hover:text-gray-900">
-              Add Tour
-            </Link>
+            {user.role && (
+              <Link to="/addtour" className="mr-5 hover:text-gray-900">
+                Add Tour
+              </Link>
+            )}
             <Link to="/orderlist" className="mr-5 hover:text-gray-900">
               Order List
             </Link>

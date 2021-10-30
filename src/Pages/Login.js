@@ -1,13 +1,19 @@
-import React from "react";
-import { useLocation, useHistory } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useLocation, useHistory, Redirect } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
+import Home from "./Home";
 
 export default function Login() {
-  const { signInGoogle, error } = useAuth();
-
+  const { signInGoogle, error, user } = useAuth();
   const location = useLocation();
   const history = useHistory();
   const redirect_uri = location.state?.from || "/";
+
+  useEffect(() => {
+    if (user.email) {
+      window.location = "/";
+    }
+  }, [user]);
 
   const googleLogin = () => {
     signInGoogle().then((result) => {

@@ -18,21 +18,43 @@ export default function useFirebase() {
   const [loading, setLoading] = useState(true);
 
   // For Creating Account With Google
-  const signInGoogle = () => {
+  const signInGoogle = (admin) => {
     return signInWithPopup(auth, googleProvider).finally(() => {
+      checkAdmin(admin);
       setLoading(false);
     });
   };
-  // Using Hooks For Not Logout
-  useEffect(() => {
+
+  const checkAdmin = (admin) => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        setUser(user);
+        if (admin) {
+          setUser({ ...user, role: "admin" });
+        } else {
+          console.log('get');
+          fetch(`http://localhost:5000/admin/${user.email}`)
+            .then((res) => res.json())
+            .then((result) => {
+              console.log(result);
+              if (result.success) {
+                setUser({ ...user, role: "admin" });
+              } else if( result.error ){
+                console.log('result2');
+                setUser(user);
+              }
+            });
+          // setUser(user);
+        }
       } else {
         setUser({});
       }
       setLoading(false);
     });
+  };
+
+  // Using Hooks For Not Logout
+  useEffect(() => {
+    checkAdmin();
   }, []);
   // User Logout Function Call
   const logOut = () => {
@@ -42,6 +64,7 @@ export default function useFirebase() {
       .finally(() => setLoading(false));
   };
   return {
+    setUser,
     loading,
     user,
     error,

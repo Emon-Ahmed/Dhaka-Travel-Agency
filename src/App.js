@@ -16,10 +16,9 @@ import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import Admin from "./Pages/Admin";
 import AuthProvider from "./Context/AuthProvider";
-import PrivateRoute from "./PrivateRoute/PrivateRoute"
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import AddTour from "./Pages/AddTour";
 import OrderList from "./Pages/OrderList";
-
 
 export default function App() {
   return (
@@ -64,9 +63,9 @@ export default function App() {
             <PrivateRoute exact path="/register">
               <Register></Register>
             </PrivateRoute>
-            <PrivateRoute exact path="/admin">
+            <Route exact path="/admin">
               <Admin></Admin>
-            </PrivateRoute>
+            </Route>
             <Route exact path="*">
               <NotFound></NotFound>
             </Route>
