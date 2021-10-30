@@ -1,16 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useParams } from "react-router";
+import useAuth from "../Hooks/useAuth";
 
-
-export default function AllTour( ) {
-  const { _id } = useParams();
+export default function AllTour() {
+  const { user } = useAuth();
   const [tours, setTour] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetch("http://localhost:5000/alltour")
       .then((res) => res.json())
-      .then((data) => setTour(data));
-  });
+      .then((data) => {
+        setTour(data);
+        setLoading(false);
+      });
+  }, []);
+  // Buy Now
+  const bookNow = (tour) => {
+    delete tour._id;
+    const data = { ...tour, userEmail: user.email, status: "Pending" };
+    fetch("http://localhost:5000/orders", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.insertedId) {
+          alert("DONE");
+        }
+      });
+  };
+
   // Delete
   const deleteTour = (id) => {
     const url = `http://localhost:5000/alltour/${id}`;
@@ -26,6 +48,19 @@ export default function AllTour( ) {
         }
       });
   };
+
+  if (loading) {
+    return (
+      <div className="text-center">
+        <button type="button" class="bg-rose-600 ..." disabled>
+          <svg class="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24"></svg>
+          <div className="text-4xl p-20">
+            <p>Loading</p>
+          </div>
+        </button>
+      </div>
+    );
+  }
   return (
     <div>
       <section className="text-gray-600 body-font">
@@ -49,18 +84,25 @@ export default function AllTour( ) {
                     {tour.name}
                   </h2>
                   <p className="mt-1">$16.00</p>
-                  <button
-                    onClick={() => deleteTour(tour._id)}
-                    className="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-                  >
-                    Delete
-                  </button>
-                  <Link
-                    to={`/tourdetails/${tour._id}`}
-                    className="btn btn-service"
-                  >
-                    Detials
-                  </Link>
+                  <div>
+                    <button
+                      onClick={() => deleteTour(tour._id)}
+                      className="flex mx-auto text-white bg-red-500 border-0 py-1.5 px-8 focus:outline-none hover:bg-red-600 text-lg"
+                    >
+                      Delete
+                    </button>
+                    <Link to={`/tourdetails/${tour._id}`}>
+                      <button className="m-1 flex mx-auto text-white bg-indigo-500 border-0 py-1.5 px-8 focus:outline-none hover:bg-indigo-600 text-lg">
+                        Detials
+                      </button>
+                    </Link>
+                    <button
+                      onClick={() => bookNow(tour)}
+                      className="flex mx-auto text-white bg-green-500 border-0 py-1.5 px-8 focus:outline-none hover:bg-green-600 text-lg"
+                    >
+                      Book Now
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
