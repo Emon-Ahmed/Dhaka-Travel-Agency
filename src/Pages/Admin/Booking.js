@@ -1,5 +1,5 @@
 import React from "react";
-import useAuth from "../Hooks/useAuth.js";
+import useAuth from "../../Hooks/useAuth";
 import { useForm } from "react-hook-form";
 export default function Booking() {
   const { user } = useAuth();

@@ -9,10 +9,9 @@ export default function Footer() {
           <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
             <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
               <img src="/logo.png" alt="" />
-              
             </a>
             <p className="mt-6 text-center text-sm text-gray-900">
-            Dhaka is the capital city of Bangladesh.
+              Dhaka is the capital city of Bangladesh.
             </p>
           </div>
           <div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
@@ -22,16 +21,24 @@ export default function Footer() {
               </h2>
               <nav className="list-none mb-10">
                 <li>
-                  <a className="text-gray-600 hover:text-gray-800">On Holiday</a>
+                  <a className="text-gray-600 hover:text-gray-800">
+                    On Holiday
+                  </a>
                 </li>
                 <li>
-                  <a className="text-gray-600 hover:text-gray-800">Terrific Tours</a>
+                  <a className="text-gray-600 hover:text-gray-800">
+                    Terrific Tours
+                  </a>
                 </li>
                 <li>
-                  <a className="text-gray-600 hover:text-gray-800">Fly Away Allies</a>
+                  <a className="text-gray-600 hover:text-gray-800">
+                    Fly Away Allies
+                  </a>
                 </li>
                 <li>
-                  <a className="text-gray-600 hover:text-gray-800">Victorious Tours</a>
+                  <a className="text-gray-600 hover:text-gray-800">
+                    Victorious Tours
+                  </a>
                 </li>
               </nav>
             </div>
@@ -69,7 +76,9 @@ export default function Footer() {
                   <a className="text-gray-600 hover:text-gray-800">About Us</a>
                 </li>
                 <li>
-                  <a className="text-gray-600 hover:text-gray-800">Contact Us</a>
+                  <a className="text-gray-600 hover:text-gray-800">
+                    Contact Us
+                  </a>
                 </li>
               </nav>
             </div>
@@ -99,7 +108,6 @@ export default function Footer() {
             <p className="text-gray-500 text-sm text-center sm:text-left">
               © 2021 D H A —
               <a
-                href="https://twitter.com/knyttneve"
                 rel="noopener noreferrer"
                 className="text-gray-600 ml-1"
                 target="_blank"
