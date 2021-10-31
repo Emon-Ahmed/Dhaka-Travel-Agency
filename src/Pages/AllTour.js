@@ -7,7 +7,7 @@ export default function AllTour() {
   const [tours, setTour] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch("http://localhost:5000/alltour")
+    fetch("https://agile-inlet-91085.herokuapp.com/alltour")
       .then((res) => res.json())
       .then((data) => {
         setTour(data);
@@ -18,7 +18,7 @@ export default function AllTour() {
   const bookNow = (tour) => {
     delete tour._id;
     const data = { ...tour, userEmail: user.email, status: "Pending" };
-    fetch("http://localhost:5000/orders", {
+    fetch("https://agile-inlet-91085.herokuapp.com/orders", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -35,7 +35,7 @@ export default function AllTour() {
 
   // Delete
   const deleteTour = (id) => {
-    const url = `http://localhost:5000/alltour/${id}`;
+    const url = `https://agile-inlet-91085.herokuapp.com/alltour/${id}`;
     fetch(url, {
       method: "DELETE",
     })

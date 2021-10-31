@@ -6,7 +6,7 @@ export default function OrderList() {
   const [order, setOrder] = useState([]);
   const [tours, setTour] = useState([]);
   const orderMail = user.email;
-  const url = `http://localhost:5000/orderlist/${orderMail}`;
+  const url = `https://agile-inlet-91085.herokuapp.com/orderlist/${orderMail}`;
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
@@ -18,7 +18,7 @@ export default function OrderList() {
   const bookNow = (tour) => {
     delete tour._id;
     const data = { ...tour, userEmail: user.email, status: "Pending" };
-    fetch("http://localhost:5000/orders", {
+    fetch("https://agile-inlet-91085.herokuapp.com/orders", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -33,22 +33,6 @@ export default function OrderList() {
       });
   };
 
-  // Delete
-  const deleteTour = (id) => {
-    const url = `http://localhost:5000/orderlist/${id}`;
-    console.log(id);
-    fetch(url, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.deletedCount > 0) {
-          alert("DELETED");
-          const rem = tours.filter((tour) => tour._id !== id);
-          setTour(rem);
-        }
-      });
-  };
   return (
     <div>
       <div className="container px-5 py-24 mx-auto flex flex-wrap flex-col">
@@ -115,9 +99,6 @@ export default function OrderList() {
       </div>
 
       <div className="container mx-auto flex">
-        {/* {order?.map((o) => (
-          <h1 className="text-center text-2xl">{o.name} </h1>
-        ))} */}
 
         
         {order?.map((tour) => (
@@ -135,12 +116,7 @@ export default function OrderList() {
               </h2>
               <p className="mt-1">Description</p>
               <div className="pl-0">
-                <button
-                  onClick={() => deleteTour(tour._id)}
-                  className="flex mx-auto text-white bg-red-500 border-0 py-1.5 px-8 focus:outline-none hover:bg-red-600 text-lg"
-                >
-                  Delete
-                </button>
+
                 <Link to={`/tourdetails/${tour._id}`}>
                   <button className="m-1 flex text-white bg-green-400 hover:bg-green-500 border-0 py-1.5 px-8 focus:outline-none  text-lg">
                     Book Now

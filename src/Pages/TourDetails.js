@@ -7,7 +7,7 @@ export default function TourDetails() {
   const { id } = useParams();
 
   useEffect(() => {
-    const url = `http://localhost:5000/alltour/${id}`;
+    const url = `https://agile-inlet-91085.herokuapp.com/alltour/${id}`;
     fetch(url)
       .then((response) => response.json())
       .then((data) => setTour(data));

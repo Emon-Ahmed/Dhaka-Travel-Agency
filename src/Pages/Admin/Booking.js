@@ -7,7 +7,7 @@ export default function Booking() {
   const onSubmit = (data) => {
     console.log(data);
 
-    fetch("http://localhost:5000/orders", {
+    fetch("https://agile-inlet-91085.herokuapp.com/orders", {
       method: "POST",
       headers: {
         "content-type": "application/json",

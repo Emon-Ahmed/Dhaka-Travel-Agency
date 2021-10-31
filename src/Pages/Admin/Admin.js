@@ -15,7 +15,7 @@ export default function Login() {
 
       if (result.user.email) {
         
-        fetch("http://localhost:5000/addadmin", {
+        fetch("0/addadmin", {
           method: "POST",
           headers: {
             "content-type": "application/json",

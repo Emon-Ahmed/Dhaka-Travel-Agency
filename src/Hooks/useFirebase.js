@@ -32,7 +32,7 @@ export default function useFirebase() {
           setUser({ ...user, role: "admin" });
         } else {
           console.log('get');
-          fetch(`http://localhost:5000/admin/${user.email}`)
+          fetch(`https://agile-inlet-91085.herokuapp.com/admin/${user.email}`)
             .then((res) => res.json())
             .then((result) => {
               console.log(result);

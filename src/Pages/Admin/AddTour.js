@@ -3,15 +3,15 @@ import { Link } from "react-router-dom";
 
 export default function AddTour() {
   const nameRef = useRef();
-  const emailRef = useRef();
+  const imgRef = useRef();
   const messageRef = useRef();
 
   const handleSubmit = (e) => {
     let name = nameRef.current.value;
-    const email = emailRef.current.value;
+    const url  = imgRef.current.value;
     const message = messageRef.current.value;
-    const newTour = { name, email, message };
-    fetch("http://localhost:5000/addtour", {
+    const newTour = { name, url, message };
+    fetch("https://agile-inlet-91085.herokuapp.com/addtour", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -121,11 +121,11 @@ export default function AddTour() {
                         for="email"
                         className="leading-7 text-sm text-gray-600"
                       >
-                        Email
+                        Image URL
                       </label>
                       <input
-                        ref={emailRef}
-                        type="email"
+                        ref={imgRef}
+                        type="text"
                         id="email"
                         name="email"
                         className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
@@ -138,7 +138,7 @@ export default function AddTour() {
                         for="message"
                         className="leading-7 text-sm text-gray-600"
                       >
-                        Message
+                        Description
                       </label>
                       <textarea
                         ref={messageRef}

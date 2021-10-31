@@ -9,47 +9,13 @@ export default function Home() {
   const [tours, setTour] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch("http://localhost:5000/alltour")
+    fetch("https://agile-inlet-91085.herokuapp.com/alltour")
       .then((res) => res.json())
       .then((data) => {
         setTour(data);
         setLoading(false);
       });
   }, []);
-  // Buy Now
-  // const bookNow = (tour) => {
-  //   delete tour._id;
-  //   const data = { ...tour, userEmail: user.email, status: "Pending" };
-  //   fetch("http://localhost:5000/orders", {
-  //     method: "POST",
-  //     headers: {
-  //       "content-type": "application/json",
-  //     },
-  //     body: JSON.stringify(data),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((result) => {
-  //       if (result.insertedId) {
-  //         console.log("DONE");
-  //       }
-  //     });
-  // };
-
-  // Delete
-  // const deleteTour = (id) => {
-  //   const url = `http://localhost:5000/alltour/${id}`;
-  //   fetch(url, {
-  //     method: "DELETE",
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       if (data.deletedCount > 0) {
-  //         alert("DELETED");
-  //         const rem = tours.filter((tour) => tour._id !== id);
-  //         setTour(rem);
-  //       }
-  //     });
-  // };
 
   if (loading) {
     return (
@@ -137,7 +103,7 @@ export default function Home() {
                     <img
                       alt="ecommerce"
                       className="object-cover object-center w-full h-full block"
-                      src="https://dummyimage.com/420x260"
+                      src={tour.url}
                     />
                   </a>
                   <div className="mt-4">
@@ -146,25 +112,11 @@ export default function Home() {
                     </h2>
                     <p className="mt-1">Description</p>
                     <div className="pl-0">
-                      {/* <button
-                      onClick={() => deleteTour(tour._id)}
-                      className="flex mx-auto text-white bg-red-500 border-0 py-1.5 px-8 focus:outline-none hover:bg-red-600 text-lg"
-                    >
-                      Delete
-                    </button> */}
                       <Link to={`/tourdetails/${tour._id}`}>
                         <button className="m-1 flex text-white bg-green-400 hover:bg-green-500 border-0 py-1.5 px-8 focus:outline-none  text-lg">
                           Book Now
                         </button>
                       </Link>
-                      {/* <Link to="/orderlist">
-                      <button
-                        onClick={() => bookNow(tour)}
-                        className="flex mx-auto text-white bg-green-500 border-0 py-1.5 px-8 focus:outline-none hover:bg-green-600 text-lg"
-                      >
-                        Book Now
-                      </button>
-                    </Link> */}
                     </div>
                   </div>
                 </div>

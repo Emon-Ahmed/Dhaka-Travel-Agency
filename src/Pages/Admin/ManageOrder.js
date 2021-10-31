@@ -4,7 +4,7 @@ import useAuth from "../../Hooks/useAuth";
 
 export default function Profile() {
     const [ seeOrder, setSeeOrder ]= useState([]);
-    fetch('http://localhost:5000/orderlist')
+    fetch('https://agile-inlet-91085.herokuapp.com/orderlist')
     .then(res => res.json())
     .then( data => setSeeOrder(data) )
 
