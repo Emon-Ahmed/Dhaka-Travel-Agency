@@ -17,7 +17,7 @@ export default function Banner() {
               We make dreams come true!
             </h1>
             <div className="text-center my-1">
-              <Link to="/alltour"><button  className="primary-btn"> View Tour </button></Link>
+              <Link to="/alltour"><button  className="bg-green-400 hover:bg-green-500 shadow-lg inline-flex items-center border-0 py-2 text-white px-8 focus:outline-none text-base mt-4 md:mt-0"> View Tour </button></Link>
             </div>
           </div>
         </div>

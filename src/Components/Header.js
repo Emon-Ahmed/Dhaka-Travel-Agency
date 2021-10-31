@@ -39,12 +39,12 @@ export default function Header() {
             )}
           </nav>
           <div className="md:w-1/3 w-full md:flex md:justify-end md:left-0 md:items-center md:mx-auto md:py-3">
-            <button className="mr-4 primary-btn  md:mt-0">
+            <button className="mr-4 bg-green-400 hover:bg-green-500 shadow inline-flex items-center border-0 py-2 text-white px-8 focus:outline-none text-base mt-4 md:mt-0">
               <Link to="/profile">
-                {user.displayName ? `${user.displayName}` : "Login"}{" "}
+                {user.displayName ? `${user.displayName}` : "Login"}
               </Link>
             </button>
-            <button className="primary-btn">
+            <button className="bg-green-400 hover:bg-green-500 shadow inline-flex items-center border-0 py-2 text-white px-8 focus:outline-none text-base mt-4 md:mt-0">
               {user.displayName ? (
                 <Link onClick={logOut} to="/login">
                   Logout

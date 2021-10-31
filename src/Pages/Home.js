@@ -1,7 +1,68 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Banner from "../Components/Banner";
+import "../App.css";
+import { Link } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
 
 export default function Home() {
+  const { user } = useAuth();
+  const [tours, setTour] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    fetch("http://localhost:5000/alltour")
+      .then((res) => res.json())
+      .then((data) => {
+        setTour(data);
+        setLoading(false);
+      });
+  }, []);
+  // Buy Now
+  // const bookNow = (tour) => {
+  //   delete tour._id;
+  //   const data = { ...tour, userEmail: user.email, status: "Pending" };
+  //   fetch("http://localhost:5000/orders", {
+  //     method: "POST",
+  //     headers: {
+  //       "content-type": "application/json",
+  //     },
+  //     body: JSON.stringify(data),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((result) => {
+  //       if (result.insertedId) {
+  //         console.log("DONE");
+  //       }
+  //     });
+  // };
+
+  // Delete
+  // const deleteTour = (id) => {
+  //   const url = `http://localhost:5000/alltour/${id}`;
+  //   fetch(url, {
+  //     method: "DELETE",
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (data.deletedCount > 0) {
+  //         alert("DELETED");
+  //         const rem = tours.filter((tour) => tour._id !== id);
+  //         setTour(rem);
+  //       }
+  //     });
+  // };
+
+  if (loading) {
+    return (
+      <div className="text-center">
+        <button type="button" class="bg-rose-600 ..." disabled>
+          <svg class="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24"></svg>
+          <div className="text-4xl p-20">
+            <p>Loading</p>
+          </div>
+        </button>
+      </div>
+    );
+  }
   return (
     <div>
       <section className="container mx-auto">
@@ -12,29 +73,34 @@ export default function Home() {
           <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
             <div className="w-full flex flex-col">
               <div className="h-1 bg-gray-200 rounded overflow-hidden">
-                <div className="w-24 h-full bg-indigo-500"></div>
+                <div className="w-48 h-full bg-green-500"></div>
               </div>
               <div className="flex flex-wrap sm:flex-row flex-col py-2 mb-8">
                 <h1 className="sm:w-2/5 text-gray-900 font-medium title-font text-2xl mb-2 sm:mb-0">
                   About Dhaka Travel
                 </h1>
                 <p className="sm:w-3/5 leading-relaxed text-base sm:pl-10 pl-0">
-                  Street art subway tile salvia four dollaur
+                  Dhaka is the capital city of Bangladesh.
                 </p>
               </div>
             </div>
-            <p className="mb-4 leading-relaxed">
+            <p className="mb-4 leading-relaxed text-justify">
               Dhaka is the capital city of Bangladesh, in southern Asia. Set
               beside the Buriganga River, it’s at the center of national
               government, trade and culture.
             </p>
-            <p className="mb-8 leading-relaxed">
-            The 17th-century old city was the Mughal capital of Bengal, and many palaces and mosques remain. American architect Louis Khan’s National Parliament House complex typifies the huge, fast-growing modern metropolis.
+            <p className="mb-8 leading-relaxed text-justify">
+              The 17th-century old city was the Mughal capital of Bengal, and
+              many palaces and mosques remain. American architect Louis Khan’s
+              National Parliament House complex typifies the huge, fast-growing
+              modern metropolis.
             </p>
             <div className="flex justify-center">
-              <button className="primary-btn">
-                Button
-              </button>
+              <Link to="/about">
+                <button className="bg-green-400 hover:bg-green-500 shadow inline-flex items-center border-0 py-2 text-white px-8  focus:outline-none text-base mt-4 md:mt-0">
+                  About Us
+                </button>
+              </Link>
             </div>
           </div>
           <div className="lg:max-w-lg lg:w-full md:w-1/2 w-full">
@@ -48,181 +114,80 @@ export default function Home() {
       </section>
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
-        <div className="w-full flex flex-col">
-              <div className="h-1 bg-gray-200 rounded overflow-hidden">
-                <div className="w-24 h-full bg-indigo-500"></div>
-              </div>
-              <div className="flex flex-wrap sm:flex-row flex-col py-2 mb-8">
-                <h1 className="sm:w-2/5 text-gray-900 font-medium title-font text-2xl mb-2 sm:mb-0">
-                  Dhaka Travel's Tours
-                </h1>
-                <p className="sm:w-3/5 leading-relaxed text-base sm:pl-10 pl-0">
-                Street art subway tile salvia four dollar toast bitters selfies quinoa yuccie synth meditation iPhone intelligentsia prism tofu. 
-                </p>
-              </div>
+          <div className="w-full flex flex-col">
+            <div className="h-1 bg-gray-200 rounded overflow-hidden">
+              <div className="w-24 h-full bg-indigo-500"></div>
             </div>
+            <div className="flex flex-wrap sm:flex-row flex-col py-2 mb-8">
+              <h1 className="sm:w-2/5 text-gray-900 font-medium title-font text-2xl mb-2 sm:mb-0">
+                Dhaka Travel's Tours
+              </h1>
+              <p className="sm:w-3/5 leading-relaxed text-base sm:pl-10 pl-0">
+                Dhaka is the capital city of Bangladesh, in southern Asia. Set
+                beside the Buriganga River, it’s at the center of national
+                government, trade and culture.
+              </p>
+            </div>
+          </div>
           <div className="flex flex-wrap -m-4">
-            <div className="lg:w-1/4 md:w-1/2 p-4 w-full">
-              <a className="block relative h-48 rounded overflow-hidden">
-                <img
-                  alt="ecommerce"
-                  className="object-cover object-center w-full h-full block"
-                  src="https://dummyimage.com/420x260"
-                />
-              </a>
-              <div className="mt-4">
-                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                  CATEGORY
-                </h3>
-                <h2 className="text-gray-900 title-font text-lg font-medium">
-                  The Catalyzer
-                </h2>
-                <p className="mt-1">$16.00</p>
+            {tours.map((tour) => (
+              <div className="lg:w-1/4 md:w-1/2 p-4 w-full">
+                <a className="block relative h-48 rounded overflow-hidden">
+                  <img
+                    alt="ecommerce"
+                    className="object-cover object-center w-full h-full block"
+                    src="https://dummyimage.com/420x260"
+                  />
+                </a>
+                <div className="mt-4">
+                  <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
+                    CATEGORY
+                  </h3>
+                  <h2 className="text-gray-900 title-font text-lg font-medium">
+                    {tour.name}
+                  </h2>
+                  <p className="mt-1">$16.00</p>
+                  <div className="pl-0">
+                    {/* <button
+                      onClick={() => deleteTour(tour._id)}
+                      className="flex mx-auto text-white bg-red-500 border-0 py-1.5 px-8 focus:outline-none hover:bg-red-600 text-lg"
+                    >
+                      Delete
+                    </button> */}
+                    <Link to={`/tourdetails/${tour._id}`}>
+                      <button className="m-1 flex text-white bg-green-400 hover:bg-green-500 border-0 py-1.5 px-8 focus:outline-none  text-lg">
+                        Book Now
+                      </button>
+                    </Link>
+                    {/* <Link to="/orderlist">
+                      <button
+                        onClick={() => bookNow(tour)}
+                        className="flex mx-auto text-white bg-green-500 border-0 py-1.5 px-8 focus:outline-none hover:bg-green-600 text-lg"
+                      >
+                        Book Now
+                      </button>
+                    </Link> */}
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="lg:w-1/4 md:w-1/2 p-4 w-full">
-              <a className="block relative h-48 rounded overflow-hidden">
-                <img
-                  alt="ecommerce"
-                  className="object-cover object-center w-full h-full block"
-                  src="https://dummyimage.com/421x261"
-                />
-              </a>
-              <div className="mt-4">
-                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                  CATEGORY
-                </h3>
-                <h2 className="text-gray-900 title-font text-lg font-medium">
-                  Shooting Stars
-                </h2>
-                <p className="mt-1">$21.15</p>
-              </div>
-            </div>
-            <div className="lg:w-1/4 md:w-1/2 p-4 w-full">
-              <a className="block relative h-48 rounded overflow-hidden">
-                <img
-                  alt="ecommerce"
-                  className="object-cover object-center w-full h-full block"
-                  src="https://dummyimage.com/422x262"
-                />
-              </a>
-              <div className="mt-4">
-                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                  CATEGORY
-                </h3>
-                <h2 className="text-gray-900 title-font text-lg font-medium">
-                  Neptune
-                </h2>
-                <p className="mt-1">$12.00</p>
-              </div>
-            </div>
-            <div className="lg:w-1/4 md:w-1/2 p-4 w-full">
-              <a className="block relative h-48 rounded overflow-hidden">
-                <img
-                  alt="ecommerce"
-                  className="object-cover object-center w-full h-full block"
-                  src="https://dummyimage.com/423x263"
-                />
-              </a>
-              <div className="mt-4">
-                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                  CATEGORY
-                </h3>
-                <h2 className="text-gray-900 title-font text-lg font-medium">
-                  The 400 Blows
-                </h2>
-                <p className="mt-1">$18.40</p>
-              </div>
-            </div>
-            <div className="lg:w-1/4 md:w-1/2 p-4 w-full">
-              <a className="block relative h-48 rounded overflow-hidden">
-                <img
-                  alt="ecommerce"
-                  className="object-cover object-center w-full h-full block"
-                  src="https://dummyimage.com/424x264"
-                />
-              </a>
-              <div className="mt-4">
-                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                  CATEGORY
-                </h3>
-                <h2 className="text-gray-900 title-font text-lg font-medium">
-                  The Catalyzer
-                </h2>
-                <p className="mt-1">$16.00</p>
-              </div>
-            </div>
-            <div className="lg:w-1/4 md:w-1/2 p-4 w-full">
-              <a className="block relative h-48 rounded overflow-hidden">
-                <img
-                  alt="ecommerce"
-                  className="object-cover object-center w-full h-full block"
-                  src="https://dummyimage.com/425x265"
-                />
-              </a>
-              <div className="mt-4">
-                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                  CATEGORY
-                </h3>
-                <h2 className="text-gray-900 title-font text-lg font-medium">
-                  Shooting Stars
-                </h2>
-                <p className="mt-1">$21.15</p>
-              </div>
-            </div>
-            <div className="lg:w-1/4 md:w-1/2 p-4 w-full">
-              <a className="block relative h-48 rounded overflow-hidden">
-                <img
-                  alt="ecommerce"
-                  className="object-cover object-center w-full h-full block"
-                  src="https://dummyimage.com/427x267"
-                />
-              </a>
-              <div className="mt-4">
-                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                  CATEGORY
-                </h3>
-                <h2 className="text-gray-900 title-font text-lg font-medium">
-                  Neptune
-                </h2>
-                <p className="mt-1">$12.00</p>
-              </div>
-            </div>
-            <div className="lg:w-1/4 md:w-1/2 p-4 w-full">
-              <a className="block relative h-48 rounded overflow-hidden">
-                <img
-                  alt="ecommerce"
-                  className="object-cover object-center w-full h-full block"
-                  src="https://dummyimage.com/428x268"
-                />
-              </a>
-              <div className="mt-4">
-                <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                  CATEGORY
-                </h3>
-                <h2 className="text-gray-900 title-font text-lg font-medium">
-                  The 400 Blows
-                </h2>
-                <p className="mt-1">$18.40</p>
-              </div>
-            </div>
+            )).slice(0,7)}
           </div>
         </div>
       </section>
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
-          <div className="flex flex-col">
+          <div className="w-full flex flex-col">
             <div className="h-1 bg-gray-200 rounded overflow-hidden">
               <div className="w-24 h-full bg-indigo-500"></div>
             </div>
-            <div className="flex flex-wrap sm:flex-row flex-col py-6 mb-12">
+            <div className="flex flex-wrap sm:flex-row flex-col py-2 mb-8">
               <h1 className="sm:w-2/5 text-gray-900 font-medium title-font text-2xl mb-2 sm:mb-0">
-                Space The Final Frontier
+                Dhaka Travel's Blog
               </h1>
               <p className="sm:w-3/5 leading-relaxed text-base sm:pl-10 pl-0">
-                Street art subway tile salvia four dollar toast bitters selfies
-                quinoa yuccie synth meditation iPhone intelligentsia prism tofu.
-                Viral gochujang bitters dreamcatcher.
+                Dhaka is the capital city of Bangladesh, in southern Asia. Set
+                beside the Buriganga River, it’s at the center of national
+                government, trade and culture.
               </p>
             </div>
           </div>
@@ -325,9 +290,21 @@ export default function Home() {
       </section>
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
-          <h1 className="text-3xl font-medium title-font text-gray-900 mb-12 text-center">
-            Testimonials
-          </h1>
+          <div className="w-full flex flex-col">
+            <div className="h-1 bg-gray-200 rounded overflow-hidden">
+              <div className="w-24 h-full bg-indigo-500"></div>
+            </div>
+            <div className="flex flex-wrap sm:flex-row flex-col py-2 mb-8">
+              <h1 className="sm:w-2/5 text-gray-900 font-medium title-font text-2xl mb-2 sm:mb-0">
+                Dhaka Travel's Testimonial
+              </h1>
+              <p className="sm:w-3/5 leading-relaxed text-base sm:pl-10 pl-0">
+                Dhaka is the capital city of Bangladesh, in southern Asia. Set
+                beside the Buriganga River, it’s at the center of national
+                government, trade and culture.
+              </p>
+            </div>
+          </div>
           <div className="flex flex-wrap -m-4">
             <div className="p-4 md:w-1/2 w-full">
               <div className="h-full bg-gray-100 p-8 rounded">

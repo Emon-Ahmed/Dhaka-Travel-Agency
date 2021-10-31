@@ -1,17 +1,3 @@
 @tailwind base;
 @tailwind components;
-
-@layer components {
-  .brand-color {
-    background-color: #2FDD92;
-  }
-  .background{
-    background-color: #34BE82
-  }
-  .primary-btn {
-    @apply brand-color shadow inline-flex items-center border-0 py-2 text-white px-8  focus:outline-none hover:background text-base mt-4 md:mt-0;
-  }
-}
-
-
 @tailwind utilities;
