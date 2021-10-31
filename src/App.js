@@ -10,7 +10,6 @@ import Booking from "./Pages/Booking";
 import Profile from "./Pages/Profile";
 import Login from "./Pages/Login";
 import TourDetails from "./Pages/TourDetails";
-import Register from "./Pages/Register";
 import NotFound from "./Pages/NotFound";
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
@@ -30,9 +29,9 @@ export default function App() {
             <Route exact path="/">
               <Home></Home>
             </Route>
-            <Route exact path="/orderlist">
+            <PrivateRoute exact path="/orderlist">
               <OrderList></OrderList>
-            </Route>
+            </PrivateRoute>
             <Route exact path="/alltour">
               <AllTour></AllTour>
             </Route>
@@ -59,9 +58,6 @@ export default function App() {
             </PrivateRoute>
             <PrivateRoute exact path="/booking/:id">
               <Booking></Booking>
-            </PrivateRoute>
-            <PrivateRoute exact path="/register">
-              <Register></Register>
             </PrivateRoute>
             <Route exact path="/admin">
               <Admin></Admin>

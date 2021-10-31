@@ -12,34 +12,28 @@ export default function Login() {
 
   const googleLogin = () => {
     signInGoogle("admin").then((result) => {
-      history.push(redirect_uri);
-      // if (result.user.email) {
+
+      if (result.user.email) {
         
-        // fetch("http://localhost:5000/addadmin", {
-        //   method: "POST",
-        //   headers: {
-        //     "content-type": "application/json",
-        //   },
-        //   body: JSON.stringify({ email: result.user.email }),
-        // })
-        //   .then((res) => res.json())
-        //   .then((result) => {
-        //     if (result.success) {
-        //       setUser({ ...user, role: "admin" });
-        //       console.log(user);
-        //       history.push(redirect_uri);
-        //     }
-        //   });
-      // }
+        fetch("http://localhost:5000/addadmin", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ email: result.user.email }),
+        })
+          .then((res) => res.json())
+          .then((result) => {
+            if (result.success) {
+              // setUser({ ...user, role: "admin" });
+              // console.log(user);
+              history.push(redirect_uri);
+            }
+          });
+      }
+
     });
   };
-
-  // fetch(`http://localhost:5000/admin/${user.email}`)
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //        console.log(data);
-  //       });
-
   return (
     <div>
       <section className="text-gray-600 body-font bg-green-200">
