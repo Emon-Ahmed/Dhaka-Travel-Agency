@@ -130,36 +130,34 @@ export default function Home() {
             </div>
           </div>
           <div className="flex flex-wrap -m-4">
-            {tours.map((tour) => (
-              <div className="lg:w-1/4 md:w-1/2 p-4 w-full">
-                <a className="block relative h-48 rounded overflow-hidden">
-                  <img
-                    alt="ecommerce"
-                    className="object-cover object-center w-full h-full block"
-                    src="https://dummyimage.com/420x260"
-                  />
-                </a>
-                <div className="mt-4">
-                  <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                    CATEGORY
-                  </h3>
-                  <h2 className="text-gray-900 title-font text-lg font-medium">
-                    {tour.name}
-                  </h2>
-                  <p className="mt-1">$16.00</p>
-                  <div className="pl-0">
-                    {/* <button
+            {tours
+              .map((tour) => (
+                <div className="lg:w-1/4 md:w-1/2 p-4 w-full">
+                  <a className="block relative h-48 rounded overflow-hidden">
+                    <img
+                      alt="ecommerce"
+                      className="object-cover object-center w-full h-full block"
+                      src="https://dummyimage.com/420x260"
+                    />
+                  </a>
+                  <div className="mt-4">
+                    <h2 className="text-gray-900 title-font text-lg font-medium">
+                      {tour.name}
+                    </h2>
+                    <p className="mt-1">Description</p>
+                    <div className="pl-0">
+                      {/* <button
                       onClick={() => deleteTour(tour._id)}
                       className="flex mx-auto text-white bg-red-500 border-0 py-1.5 px-8 focus:outline-none hover:bg-red-600 text-lg"
                     >
                       Delete
                     </button> */}
-                    <Link to={`/tourdetails/${tour._id}`}>
-                      <button className="m-1 flex text-white bg-green-400 hover:bg-green-500 border-0 py-1.5 px-8 focus:outline-none  text-lg">
-                        Book Now
-                      </button>
-                    </Link>
-                    {/* <Link to="/orderlist">
+                      <Link to={`/tourdetails/${tour._id}`}>
+                        <button className="m-1 flex text-white bg-green-400 hover:bg-green-500 border-0 py-1.5 px-8 focus:outline-none  text-lg">
+                          Book Now
+                        </button>
+                      </Link>
+                      {/* <Link to="/orderlist">
                       <button
                         onClick={() => bookNow(tour)}
                         className="flex mx-auto text-white bg-green-500 border-0 py-1.5 px-8 focus:outline-none hover:bg-green-600 text-lg"
@@ -167,10 +165,11 @@ export default function Home() {
                         Book Now
                       </button>
                     </Link> */}
+                    </div>
                   </div>
                 </div>
-              </div>
-            )).slice(0,7)}
+              ))
+              .slice(0, 8)}
           </div>
         </div>
       </section>
@@ -197,16 +196,16 @@ export default function Home() {
                 <img
                   alt="content"
                   className="object-cover object-center h-full w-full"
-                  src="https://dummyimage.com/1203x503"
+                  src="https://emonahmed.com/programming-hero/11/blog1.jpg"
                 />
               </div>
               <h2 className="text-xl font-medium title-font text-gray-900 mt-5">
-                Shooting Stars
+                Where Children Sleep
               </h2>
               <p className="text-base leading-relaxed mt-2">
-                Swag shoivdigoitch literally meditation subway tile tumblr
-                cold-pressed. Gastropub street art beard dreamcatcher neutra,
-                ethical XOXO lumbersexual.
+                21 min read Children all over the world live and sleep in very
+                different environments. It is my hope that these photographs
+                will help children, and adults.
               </p>
               <a className="text-indigo-500 inline-flex items-center mt-3">
                 Learn More
@@ -228,16 +227,16 @@ export default function Home() {
                 <img
                   alt="content"
                   className="object-cover object-center h-full w-full"
-                  src="https://dummyimage.com/1204x504"
+                  src="https://emonahmed.com/programming-hero/11/blog2.jpg"
                 />
               </div>
               <h2 className="text-xl font-medium title-font text-gray-900 mt-5">
-                The Catalyzer
+                Wakhan, An Other Afghanistan
               </h2>
               <p className="text-base leading-relaxed mt-2">
-                Swag shoivdigoitch literally meditation subway tile tumblr
-                cold-pressed. Gastropub street art beard dreamcatcher neutra,
-                ethical XOXO lumbersexual.
+                8 min read Journeying through a remote region of northeastern
+                Afghanistan, untouched by the war and preserved from the Taliban
+                regime, this story pays.
               </p>
               <a className="text-indigo-500 inline-flex items-center mt-3">
                 Learn More
@@ -259,16 +258,16 @@ export default function Home() {
                 <img
                   alt="content"
                   className="object-cover object-center h-full w-full"
-                  src="https://dummyimage.com/1205x505"
+                  src="https://emonahmed.com/programming-hero/11/blog3.jpg"
                 />
               </div>
               <h2 className="text-xl font-medium title-font text-gray-900 mt-5">
-                The 400 Blows
+                Women at the End of the Land
               </h2>
               <p className="text-base leading-relaxed mt-2">
-                Swag shoivdigoitch literally meditation subway tile tumblr
-                cold-pressed. Gastropub street art beard dreamcatcher neutra,
-                ethical XOXO lumbersexual.
+                For centuries, the nomadic Nenets reindeer herders of the
+                Siberian arctic have migrated across one of the most challenging
+                environments on Earth.
               </p>
               <a className="text-indigo-500 inline-flex items-center mt-3">
                 Learn More
@@ -317,22 +316,19 @@ export default function Home() {
                   <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
                 </svg>
                 <p className="leading-relaxed mb-6">
-                  Synth chartreuse iPhone lomo cray raw denim brunch everyday
-                  carry neutra before they sold out fixie 90's microdosing.
-                  Tacos pinterest fanny pack venmo, post-ironic heirloom
-                  try-hard pabst authentic iceland.
+                Fantastic! Our Costa Rica travel company took care of everything. The owner and his wife met us at the airport with a care package of coffee and chocolate. It was such a nice welcome. Our drivers to and from the resort were great. The transportation was comfortable and we had plenty of time to stop along the wa
                 </p>
                 <a className="inline-flex items-center">
                   <img
                     alt="testimonial"
-                    src="https://dummyimage.com/106x106"
+                    src="https://emonahmed.com/programming-hero/11/emon.png"
                     className="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center"
                   />
                   <span className="flex-grow flex flex-col pl-4">
                     <span className="title-font font-medium text-gray-900">
-                      Holden Caulfield
+                      Emon Ahmed
                     </span>
-                    <span className="text-gray-500 text-sm">UI DEVELOPER</span>
+                    <span className="text-gray-500 text-sm">DEVELOPER</span>
                   </span>
                 </a>
               </div>
@@ -348,20 +344,17 @@ export default function Home() {
                   <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
                 </svg>
                 <p className="leading-relaxed mb-6">
-                  Synth chartreuse iPhone lomo cray raw denim brunch everyday
-                  carry neutra before they sold out fixie 90's microdosing.
-                  Tacos pinterest fanny pack venmo, post-ironic heirloom
-                  try-hard pabst authentic iceland.
+                Our trip to Morocco was truly a once-in-a-lifetime experience and we are so grateful to everyone that made it happen seamlessly. Our travel planner, Jaouad, was incredible. After reading our initial request and speaking with us on the phone, he designed a tour perfectly custom to what our interests were.
                 </p>
                 <a className="inline-flex items-center">
                   <img
                     alt="testimonial"
-                    src="https://dummyimage.com/107x107"
+                    src="https://emonahmed.com/programming-hero/11/sadia.png"
                     className="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center"
                   />
                   <span className="flex-grow flex flex-col pl-4">
                     <span className="title-font font-medium text-gray-900">
-                      Alper Kamu
+                      Sadia
                     </span>
                     <span className="text-gray-500 text-sm">DESIGNER</span>
                   </span>

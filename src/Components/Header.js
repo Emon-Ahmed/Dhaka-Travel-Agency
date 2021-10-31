@@ -5,6 +5,7 @@ import useAuth from "../Hooks/useAuth";
 
 export default function Header() {
   const { user, logOut } = useAuth();
+  console.log(user);
   return (
     <div>
       <header className="text-gray-600 body-font text-center">
